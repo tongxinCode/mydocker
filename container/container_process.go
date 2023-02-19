@@ -98,6 +98,7 @@ func CreateMountPoint(rootURL string, mntURL string) {
 func DeleteWorkSpace(rootURL string, mntURL string) {
 	DeleteMountPoint(rootURL, mntURL)
 	DeleteWriteLayer(rootURL)
+	DeleteWorkLayer(rootURL)
 }
 
 func DeleteMountPoint(rootURL string, mntURL string) {
@@ -116,6 +117,13 @@ func DeleteWriteLayer(rootURL string) {
 	writeURL := rootURL + "writeLayer/"
 	if err := os.RemoveAll(writeURL); err != nil {
 		log.Errorf("Remove dir %s error %v", writeURL, err)
+	}
+}
+
+func DeleteWorkLayer(rootURL string) {
+	workURL := rootURL + "workLayer/"
+	if err := os.RemoveAll(workURL); err != nil {
+		log.Errorf("Remove dir %s error %v", workURL, err)
 	}
 }
 

@@ -25,3 +25,11 @@ build/mydocker run -ti sh
 ```bash
 build/mydocker run -ti -v /root/volume:/containerVolume sh
 ```
+
+## 4.4
+
+```bash
+build/mydocker run -ti sh
+```
+
+另外打开一个terminal窗口,执行mydocker commit命令

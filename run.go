@@ -22,7 +22,9 @@ func Run(tty bool, comArray []string, res *subsystems.ResourceConfig, volume str
 	cgroupManager.Apply(parent.Process.Pid)
 
 	sendInitCommand(comArray, writePipe)
-	parent.Wait()
+	if tty {
+		parent.Wait()
+	}
 	mntURL := "/root/mnt/"
 	rootURL := "/root/"
 	container.DeleteWorkSpace(rootURL, mntURL, volume)

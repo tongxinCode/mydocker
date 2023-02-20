@@ -33,3 +33,9 @@ build/mydocker run -ti sh
 ```
 
 另外打开一个terminal窗口,执行mydocker commit命令
+
+## 5.1
+
+```bash
+build/mydocker run -d top
+```

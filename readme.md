@@ -19,3 +19,9 @@ stress: FAIL: [1] (416) <-- worker 5 got signal 9
 ```bash
 build/mydocker run -ti sh
 ```
+
+## 4.3
+
+```bash
+build/mydocker run -ti -v /root/volume:/containerVolume sh
+```

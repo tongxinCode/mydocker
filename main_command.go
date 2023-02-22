@@ -38,6 +38,10 @@ var runCommand = cli.Command{
 			Name:  "v",
 			Usage: "volume",
 		},
+		&cli.StringFlag{
+			Name:  "name",
+			Usage: "container name",
+		},
 	},
 	Action: func(context *cli.Context) error {
 		if context.Args().Len() < 1 {
@@ -59,7 +63,8 @@ var runCommand = cli.Command{
 		}
 		volume := context.String("v")
 		log.Infof("createTty %v", tty)
-		Run(tty, cmdArray, resConf, volume)
+		containerName := context.String("name")
+		Run(tty, cmdArray, resConf, volume, containerName)
 		return nil
 	},
 }
@@ -86,6 +91,15 @@ var commitCommand = cli.Command{
 		imageName := context.Args().Get(0)
 		//commitContainer(containerName)
 		commitContainer(imageName)
+		return nil
+	},
+}
+
+var listCommand = cli.Command{
+	Name:  "ps",
+	Usage: "list all the containers",
+	Action: func(context *cli.Context) error {
+		ListContainers()
 		return nil
 	},
 }

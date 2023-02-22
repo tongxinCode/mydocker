@@ -39,3 +39,13 @@ build/mydocker run -ti sh
 ```bash
 build/mydocker run -d top
 ```
+
+## 5.2
+
+```bash
+build/mydocker run -d top
+
+build/mydocker run -d --name bird top
+
+build/mydocker ps
+```

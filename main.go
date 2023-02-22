@@ -15,7 +15,7 @@ func main() {
 	}
 
 	app.Commands = []*cli.Command{
-		&runCommand, &initCommand, &commitCommand,
+		&runCommand, &initCommand, &commitCommand,&listCommand,
 	}
 
 	if err := app.Run(os.Args); err != nil {

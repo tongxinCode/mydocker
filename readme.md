@@ -49,3 +49,9 @@ build/mydocker run -d --name bird top
 
 build/mydocker ps
 ```
+
+## 5.3
+
+```bash
+build/mydocker logs bird
+```

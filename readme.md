@@ -81,3 +81,11 @@ build/mydocker stop bird
 ```bash
 build/mydocker rm bird
 ```
+
+## 5.7 && 5.8
+
+TODO
+
+不同容器的隔离文件系统
+
+容器指定环境变量

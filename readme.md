@@ -76,3 +76,8 @@ build/mydocker ps
 build/mydocker stop bird 
 ```
 
+## 5.6
+
+```bash
+build/mydocker rm bird
+```

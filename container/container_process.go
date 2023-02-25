@@ -20,12 +20,13 @@ var (
 )
 
 type ContainerInfo struct {
-	Pid         string `json:"pid"`        //容器的init进程在宿主机上的 PID
-	Id          string `json:"id"`         //容器Id
-	Name        string `json:"name"`       //容器名
-	Command     string `json:"command"`    //容器内init运行命令
-	CreatedTime string `json:"createTime"` //创建时间
-	Status      string `json:"status"`     //容器的状态
+	Pid         string   `json:"pid"`         //容器的init进程在宿主机上的 PID
+	Id          string   `json:"id"`          //容器Id
+	Name        string   `json:"name"`        //容器名
+	Command     string   `json:"command"`     //容器内init运行命令
+	CreatedTime string   `json:"createTime"`  //创建时间
+	Status      string   `json:"status"`      //容器的状态
+	PortMapping []string `json:"portmapping"` //端口映射
 }
 
 func NewParentProcess(tty bool, volume string, containerName string) (*exec.Cmd, *os.File) {
@@ -34,7 +35,13 @@ func NewParentProcess(tty bool, volume string, containerName string) (*exec.Cmd,
 		log.Errorf("New pipe error %v", err)
 		return nil, nil
 	}
-	cmd := exec.Command("/proc/self/exe", "init")
+	initCmd, err := os.Readlink("/proc/self/exe")
+	if err != nil {
+		log.Errorf("get init process error %v", err)
+		return nil, nil
+	}
+
+	cmd := exec.Command(initCmd, "init")
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS |
 			syscall.CLONE_NEWNET | syscall.CLONE_NEWIPC,

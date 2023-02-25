@@ -84,8 +84,35 @@ build/mydocker rm bird
 
 ## 5.7 && 5.8
 
-TODO
+TODO or pass
 
 不同容器的隔离文件系统
 
 容器指定环境变量
+
+## 6.5
+
+```bash
+build/mydocker network create --driver bridge --subnet 192.168.10.1/24 testbridge
+
+build/mydocker run -ti -net testbridge sh
+
+build/mydocker run -ti -net testbridge sh
+```
+
+```bash
+build/mydocker run -ti -p 80:80 -net testbridge sh
+
+nc -lp 80
+```
+
+```bash
+# host os
+sysctl -w net.ipv4.conf.all.forwarding=1
+```
+
+```bash
+# echo "nameserver 10.143.22.118" > /etc/resolv.conf
+# 访问外网服务器地址
+ping 110.242.68.66
+```

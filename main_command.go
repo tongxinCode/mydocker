@@ -110,7 +110,7 @@ var logCommand = cli.Command{
 	Usage: "print logs of a container",
 	Action: func(context *cli.Context) error {
 		if context.Args().Len() < 1 {
-			return fmt.Errorf("Please input your container name")
+			return fmt.Errorf("please input your container name")
 		}
 		containerName := context.Args().Get(0)
 		logContainer(containerName)
@@ -129,7 +129,7 @@ var execCommand = cli.Command{
 		}
 
 		if context.Args().Len() < 2 {
-			return fmt.Errorf("Missing container name or command")
+			return fmt.Errorf("missing container name or command")
 		}
 		containerName := context.Args().Get(0)
 		var commandArray []string
@@ -137,6 +137,19 @@ var execCommand = cli.Command{
 			commandArray = append(commandArray, arg)
 		}
 		ExecContainer(containerName, commandArray)
+		return nil
+	},
+}
+
+var stopCommand = cli.Command{
+	Name:  "stop",
+	Usage: "stop a container",
+	Action: func(context *cli.Context) error {
+		if context.Args().Len() < 1 {
+			return fmt.Errorf("missing container name")
+		}
+		containerName := context.Args().Get(0)
+		stopContainer(containerName)
 		return nil
 	},
 }

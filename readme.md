@@ -65,3 +65,14 @@ build/mydocker ps
 
 build/mydocker exec bird sh
 ```
+
+## 5.5
+
+```bash
+build/mydocker run -d --name bird top
+
+build/mydocker ps
+
+build/mydocker stop bird 
+```
+
